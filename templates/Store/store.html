@@ -1,0 +1,155 @@
+{% extends 'store/main.html' %}
+
+{% load static %}
+
+
+{% block content %}
+    <div class="shopify-grid">
+      <div class="container">
+        <div class="row">
+
+          <section id="selling-products" class="col-md-9 product-store">
+            <div class="container">
+              
+              <div class="tab-content">
+                <div id="all" data-tab-content class="active">
+                  <div class="row d-flex flex-wrap">
+                    {% for x in products %}
+                    <div class="product-item col-lg-4 col-md-6 col-sm-6">
+                      <div class="image-holder">
+                        <img src="{{x.imageURL}}" alt="Books" class="product-image">
+                      </div>
+                      <div class="btn-primary cart-concern align:left ">
+                        <div class="cart-button d-flex align:left btn-wrap">
+                          <a href="{% url 'add_cart' x.id %}" ><button type="button" class="cart-link add-button update-cart">
+                            Add to cart<i class="icon icon-arrow-io"></i></button> </a>
+                          <a href="{{x.get_url}}" ><button type="button" class="view-btn">
+                            <span class="">View</span> <i class="icon icon-screen-full"></i></button> </a>
+                        </div>
+                      </div>
+                      <div class="product-detail">
+                          <h3 class="product-title">
+                          <a href="">{{x.name}}</a>
+                          </h3>
+                          <div class="item-price text-primary">${{x.price}}</div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+              <nav class="mt-4" aria-label="Page Navigation Sample">
+                <ul class="pagination">
+                  {% if products.has_previous %}
+                    <li class= "page-item"><a class="page-link" href="?page= {{products.previous_page_number}}">Previous</a></li>
+                  {% else %}
+                    <li class= "page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                  {% endif %}
+
+                  {% for i in products.paginator.page_range %}
+                    {% if products.number == i %}
+                      <li class= "page-item active"><a class="page-link" href="#">{{i}}</a></li>
+                    {% else %}
+                      <li class= "page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+                    {% endif %}  
+                  {% endfor %}
+
+                  {% if products.has_next %}
+                    <li class= "page-item"><a class="page-link" href="?page= {{products.next_page_number}}">Next</a></li>
+                  {% else %}
+                    <li class= "page-item disabled"><a class="page-link" href="#">Next</a></li>    
+                  {% endif %}
+
+                </ul>
+              </nav>
+
+            </div>
+          </section>
+
+          <aside class="col-md-3">
+            <div class="sidebar">
+              <div class="widgets widget-menu">
+                <h5 class="widget-title">Categories</h5>
+
+                <ul class="sidebar-list list-unstyled">
+                    <li data-tab-target="#all" class="active tab">
+                      <a href="{% url 'store' %}">All products</a>
+                    </li>
+                    {% for x in categories %}
+                      <li><a href="{{ x.get_url }}">{{x.name}}</a></li>
+                    {% endfor %}
+                </ul>
+
+              </div>
+
+              <div class="widgets widget-product-tags">
+                <h5 class="widget-title">Tags</h5>
+                <ul class="product-tags sidebar-list list-unstyled">
+                  <li class="tags-item">
+                    <a href="">White</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Cheap</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Branded</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Modern</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Simple</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="widgets widget-product-brands">
+                <h5 class="widget-title">Brands</h5>
+                <ul class="product-tags sidebar-list list-unstyled">
+                  <li class="tags-item">
+                    <a href="">Nike</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Adidas</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Puma</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">Spike</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="widgets widget-price-filter">
+                <h5 class="widget-title">Filter By Price</h5>
+                <ul class="product-tags sidebar-list list-unstyled">
+                  <li class="tags-item">
+                    <a href="">Less than $10</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">$10- $20</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">$20- $30</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">$30- $40</a>
+                  </li>
+                  <li class="tags-item">
+                    <a href="">$40- $50</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </aside>
+          
+        </div>        
+      </div>      
+    </div>
+
+    <hr>
+    
+    
+</html>
+
+{% endblock %}   

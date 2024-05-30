@@ -1,0 +1,65 @@
+{% extends 'store/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<section id="billboard" class="overflow-hidden section-intro">
+    <button class="button-prev">
+        <i class="icon icon-chevron-left"></i>
+    </button>
+    <button class="button-next">
+        <i class="icon icon-chevron-right"></i>
+    </button>    
+    <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <img src="{% static 'images/banners/banner 1.jpg' %}" class="img-fluid rounded">
+            <div class="banner-content">
+              <div class="container">
+                <div class="col-lg-7" style= "margin-top:161px">
+                    <h2 class="banner-title">Rizz Collection</h2>
+                    <p>Shop for the greatest trends in fashion!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide" style="background-repeat: no-repeat;background-size: cover;background-position: center;">
+            <img src="{% static 'images/banners/banner 2.jpg' %}" class="img-fluid rounded">
+            <div class="banner-content">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <h2 class="banner-title">Casual Collection</h2>
+                    <p>Get all the items that you need to rizz up.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</section>
+
+<section id="featured-products" class="product-store padding-y-sm">
+    <div class="container">
+        <div class="section-header d-flex flex-wrap align-items-center justify-content-between">
+          <h2 class="section-title">Featured Products...</h2> 
+        </div>
+        
+        <div class="row">
+            {% for x in products %}
+            <div class="col-lg-4">
+                <div class="card card-product-grid align-items-center">
+                    <a href="" class="img-wrap"><img class="thumbnail" src="{{ x.imageURL }}" alt="img"></a><br>
+                    <figcaption style= "display: inline-block">
+                        <h5 style="display: inline-block">{{x.name}} <span class="px-1"></span> (${{x.price|floatformat:2}})</h5>
+                    </figcaption>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</section>
+
+{% endblock %}   

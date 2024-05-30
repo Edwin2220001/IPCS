@@ -1,0 +1,140 @@
+{% load static %}
+<div class="search-popup">
+    <div class="search-popup-container">
+
+      <form role="search" method="get" class="search-form" action="">
+        <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value="" name="s" />
+        <button type="submit" class="search-submit"><a href="#"><i class="icon icon-search"></i></a></button>
+      </form>
+
+      <h5 class="cat-list-title">Browse Categories</h5>
+      
+      <ul class="cat-list">
+        <li class="cat-list-item">
+          <a href="shop.html" title="Men Jackets">Men Jackets</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Fashion">Fashion</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Casual Wears">Casual Wears</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Women">Women</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Trending">Trending</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Hoodie">Hoodie</a>
+        </li>
+        <li class="cat-list-item">
+          <a href="shop.html" title="Kids">Kids</a>
+        </li>
+      </ul>
+    </div>
+</div>
+
+<header id="header">
+    <div id="header-wrap">
+      <nav class="secondary-nav border-bottom">
+        <div class="container">
+          <div class="row d-flex align-items-center">
+            <div class="col-md-4 header-contact">
+              <p>Call <strong>+91 444 11 00 35</strong>
+              </p>
+            </div>
+            <div class="col-md-4 shipping-purchase text-center">
+              <p>Rizz up now!</p>
+            </div>
+
+            <div class="col-md-4 col-sm-12 user-items">
+              <ul class="d-flex list-unstyled">
+                <li>
+                  <a href="{% url 'login' %}">
+                    <i class="icon icon-user"></i>
+                  </a>
+                </li>
+
+                <div class="justify-content-end col-lg-3 col-sm-6 col-8 order-2 order-lg-3 ">
+                  <div class="mb-3 mb-lg-0"  style="white-space: nowrap;">
+                    {% if user.id is None %}
+                    <div class="widget-header" style="display: flex; align-items: center;">
+                      <small class="title text-muted">Welcome guest!</small class="small"> <span class="px-1"></span>
+                      <div>
+                        <a href="{% url 'login' %}"><small>Sign in</small></a> <span class="dark-transp"> | </span> <a href="{% url 'register' %}"><small>Register</small></a>
+                      </div>
+                    </div>
+                    {% else %}
+                    <div class="widget-header">
+                      <small class=" text-muted">Welcome {{user.first_name}}!</small>
+                    </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <li class="user-items search-item pe-3">
+                  <a href="#" class="search-button">
+                    <i class="icon icon-search"></i>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <nav class="primary-nav padding-tiny ">
+
+        <div class="container">
+          <div class="row d-flex align-items-center">
+            <div class="col-lg-2 col-md-2">
+              <div class="main-logo">
+                <a href="{% url 'home' %}"><img src="{% static 'images/Rizz Stop Logo.png' %}" alt="logo"></a>
+              </div>
+            </div>
+            <div class="col-lg-10 col-md-10">
+              <div class="navbar">
+                <div id="main-nav" class="stellarnav d-flex justify-content-end right">
+                  <ul class="menu-list">
+                    <li><a href="{% url 'home' %}" class="item-anchor d-flex align-item-center" data-effect="Home">Home</a></li>
+
+                    <li><a href="{% url 'store' %}" class="item-anchor d-flex align-item-center" data-effect="Shop">Store</a></li>
+
+                    <li><a href="{% url 'login' %}" class="item-anchor d-flex align-item-center" data-effect="Shop">Login</a></li>
+
+                    <li class="menu-item has-sub">
+                      <a href="#" class="item-anchor d-flex align-item-center" data-effect="Pages">Pages<i class="icon icon-chevron-down"></i></a>
+                      <ul class="submenu">
+                        <li><a href="{% url 'cart' %}" class="item-anchor">Cart</a></li>
+                        <li><a href="{% url 'checkout' %}" class="item-anchor">Checkout</a></li>
+                        <li><a href="{% url 'logout' %}" class="item-anchor">Log out</a></li>
+                        <li><a href="" class="item-anchor">Single product</a></li>
+                        <li><a href="" class="item-anchor">Thankyou</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3" style="white-space: nowrap;">
+                        <div class="d-flex mb-3 mb-lg-0" >
+                          <a href="{% url 'cart' %}" class= "widget-header pl-3 ml-3" style="display: flex; align-items: center; position: relative;">
+                            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i> </div>
+                            <span class="badge badge-danger notify" style="position: absolute; top: -10px; right: 0;">{{quantity}}</span>
+                          </a>
+                        </div>  
+                      </div> 
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            
+
+          </div>
+        </div>
+
+      </nav>
+
+    </div>
+</header>
